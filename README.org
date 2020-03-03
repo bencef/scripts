@@ -1,0 +1,21 @@
+#+OPTIONS: toc:nil num:nil ^:nil
+#+TITLE: Scripts
+#+AUTHOR: Bence Fábián <begnoc@gmail.com>
+
+My random assortment of shell scripts ported to OCaml.
+
+* Build
+
+  The project is buildable with =dune=:
+
+  #+BEGIN_SRC sh
+    dune build @all
+  #+END_SRC
+
+  Or with nix:
+
+  #+BEGIN_SRC sh
+    nix-build -E 'with import <nixpkgs> {}; callPackage ./. {}'
+  #+END_SRC
+
+* Scripts
