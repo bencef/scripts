@@ -1,5 +1,6 @@
 open Core
 open Shexp_process
+open Shexp_process.Let_syntax
 
 (* todo: make this overridable from the environment *)
 let brightness_file = "/sys/class/backlight/intel_backlight/brightness"
@@ -24,7 +25,9 @@ let parse_args () =
   | _ -> Error "Too many arguments"
 
 let read_brightness () =
-  echo "read brightness"
+  let open Util in
+  let%bind cat = command_exn "cat" in
+  cat [brightness_file]
 
 let set_brightness amount =
   let output = Printf.sprintf "setting brightness to %d" amount in
