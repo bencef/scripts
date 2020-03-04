@@ -30,8 +30,11 @@ let read_brightness () =
   cat [brightness_file]
 
 let set_brightness amount =
-  let output = Printf.sprintf "setting brightness to %d" amount in
-  echo output
+  let%bind sudo = Util.command_exn "sudo" in
+  let command =
+    echo (string_of_int amount) |-
+      sudo ["tee"; brightness_file] in
+  stdout_to "/dev/null" command
 
 let main: unit t =
   match parse_args () with
