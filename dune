@@ -1,4 +1,5 @@
 (executables
- (names ec)
+ (names ec
+        brightness)
  (libraries shexp.process core)
  (preprocess (pps ppx_let)))
