@@ -10,7 +10,7 @@ type args =
   | Set of int
   | Error of string
 
-let read_amount amount =
+let read_amount_and_set amount =
   match int_of_string_opt amount with
   | None -> Error amount
   | Some number ->
@@ -21,7 +21,7 @@ let read_amount amount =
 let parse_args () =
   match Array.length Sys.argv with
   | 1 -> Read
-  | 2 -> read_amount (Array.get Sys.argv 1)
+  | 2 -> read_amount_and_set (Array.get Sys.argv 1)
   | _ -> Error "Too many arguments"
 
 let read_brightness () =
