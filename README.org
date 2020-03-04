@@ -19,3 +19,12 @@ My random assortment of shell scripts ported to OCaml.
   #+END_SRC
 
 * Scripts
+
+** ec
+
+   A tight wrapper around emacs client.
+   Always creates a new frame.
+
+** brightness
+
+   Reads or sets the backlight brightness.
