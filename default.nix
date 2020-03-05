@@ -5,19 +5,19 @@ stdenv.mkDerivation {
   version = "0.1.0";
   src = ./.;
 
-  buildInputs = with ocamlPackages; [dune findlib core shexp];
+  buildInputs = with ocamlPackages; [dune findlib core shexp ocaml];
 
-  buildPahse = "dune build @all";
+  buildPhase = "dune build @all";
 
   installPhase = ''
     mkdir -p $out/bin
-    for file in $(find _build/default -name '*.exe')
+    for file in $(find ./_build/default -name '*.exe')
     do
       newname=$(basename $file)
       newname=''${newname%.*}
       cp $file $out/bin/$newname
     done
-    rm $out/bin/{utop,ppx}
+    rm $out/bin/ppx
   '';
 
   phases = ["unpackPhase" "buildPhase" "installPhase"];
